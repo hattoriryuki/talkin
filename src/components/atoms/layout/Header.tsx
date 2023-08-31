@@ -1,5 +1,5 @@
-import { Flex, Heading } from "@chakra-ui/react";
 import { FC, ReactNode, memo } from "react";
+import { Flex, Heading } from "@chakra-ui/react";
 
 type Props = {
   children?: ReactNode;
