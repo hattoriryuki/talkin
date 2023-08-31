@@ -3,35 +3,17 @@ import {
   Box,
   ChakraProvider,
   Container,
-  Flex,
-  Heading,
   Stack,
   Text
 } from '@chakra-ui/react';
 
 import './App.css';
+import { Header } from './components/layout/Header';
 
 function App() {
   return (
     <ChakraProvider>
-      <Flex
-        as="nav"
-        bg="teal.500"
-        color="gray.50"
-        align="center"
-        justify="space-between"
-        padding={3}
-        h="60px"
-      >
-        <Heading
-          fontWeight={900}
-          letterSpacing="-0.07em"
-          transform="scale(1, 0.7)"
-          ml={6}
-        >
-          TALKIN
-        </Heading>
-      </Flex>
+      <Header />
       <Box
         bg="teal.500"
         color="gray.50"
