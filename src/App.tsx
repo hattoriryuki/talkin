@@ -66,7 +66,9 @@ function App() {
                 </Text>
                 <Flex align={"center"} ml={4}>
                   <Avatar name={"taro"} />
-                  <Text ml={2}>太郎</Text>
+                  <Text ml={2}>
+                    太郎
+                  </Text>
                 </Flex>
               </Box>
               <Box
@@ -95,7 +97,9 @@ function App() {
                 </Text>
                 <Flex align={"center"} ml={4}>
                   <Avatar name={"jiro"} />
-                  <Text ml={2}>二郎</Text>
+                  <Text ml={2}>
+                    二郎
+                  </Text>
                 </Flex>
               </Box>
             </Flex>
@@ -106,6 +110,8 @@ function App() {
             align={"end"}
             h={"100%"}
             p={4}
+            pb={"32px"}
+            mr={"6"}
           >
             <Text fontWeight={"bold"}>
               チャットで使用する名前を入力して、はじめるボタンを押してください
