@@ -4,25 +4,25 @@ import { Box, Container, Stack, Text } from "@chakra-ui/react";
 export const Footer: FC = memo(() => {
   return (
     <Box
-    bg={"teal.500"}
-    color={"gray.50"}
-    position={"fixed"}
-    bottom={"0"}
-    w={"100%"}
-    h={"50px"}
+      bg="teal.500"
+      color="gray.50"
+      position="fixed"
+      bottom="0"
+      w="100%"
+      h="50px"
     >
       <Container
         as={Stack}
-        maxW={"6xl"}
+        maxW="6xl"
         py={4}
-        direction={"row"}
+        direction="row"
         spacing={4}
-        justify={"center"}
-        align={"center"}
+        justify="center"
+        align="center"
         gap={20}
       >
-        <Stack direction={"row"} spacing={6}>
-          <Box as="a" href={"#"}>
+        <Stack direction="row" spacing={6}>
+          <Box as="a" href="#">
             利用規約
           </Box>
         </Stack>
