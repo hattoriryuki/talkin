@@ -1,38 +1,59 @@
 import React from 'react';
 import {
-  Avatar,
   Box,
   ChakraProvider,
   Container,
   Flex,
   Heading,
-  Image,
   Input,
+  Stack,
   Text
 } from '@chakra-ui/react';
 
 import { DefaultLayout } from './components/templates/DefaultLayout';
-import speechBubbleImage from './assets/images/speech-bubble.png';
 import { PrimaryButton } from './components/atoms/button/PrimaryButton';
+import { UserWindow } from './components/molucules/UserWindow';
+import { userProfile } from './types/userProfile';
 
 function App() {
+  const users: userProfile[] = [
+    {
+      name: "太郎",
+      text: "ヾ(●´ω｀●)"
+    },
+    {
+      name: "二郎",
+      text: "こんにちは"
+    },
+    {
+      name: "三郎",
+      text: ""
+    },
+    {
+      name: "四郎",
+      text: "こんちわ"
+    },
+    {
+      name: "五郎",
+      text: "Hello!!!"
+    },
+  ];
+
   return (
     <ChakraProvider>
       <DefaultLayout>
-        <Flex
+        <Stack
           h="calc(100vh - 110px)"
           color="gray.700"
-          justify="space-around"
         >
           <Container
             as={Flex}
             direction="column"
             justify="space-between"
             h="100%"
-            flex={0.6}
             m={0}
           >
-            <Box my={4} flex={0.3}>
+            <Box my={4} ml={20}>
               <Heading>とーきんへようこそ!</Heading>
               <Text w="480px" mt={4} fontSize="lg">
                 このサービスは、気軽に匿名でチャットができるサービスです。
@@ -40,90 +61,30 @@ function App() {
                 誹謗中傷等、相手を傷つける行為は全て禁止いたします。
               </Text>
             </Box>
-            <Flex flex={0.7} align="end" justify="space-between">
-              <Box
-                as={Flex}
-                direction="column"
-                border="1px black solid"
-                flex={0.5}
-                mr={6}
-                h={250}
-                position="relative"
-                bottom={180}
-                justify="space-between"
-                py={4}
-                boxSizing='border-box'
-              >
-                <Image src={speechBubbleImage}
-                  alt=""
-                  boxSize="200px"
-                  mx="auto"
-                />
-                <Text
-                  align="center"
-                  position="absolute"
-                  top="30%"
-                  left="30%"
-                >
-                  ヾ(●´ω｀●)
-                </Text>
-                <Flex align="center" ml={4}>
-                  <Avatar name="taro" />
-                  <Text ml={2}>
-                    太郎
-                  </Text>
-                </Flex>
-              </Box>
-              <Box
-                as={Flex}
-                direction="column"
-                border="1px black solid"
-                flex={0.5}
-                m={8}
-                h={250}
-                justify="space-between"
-                py={6}
-                position="relative"
-              >
-                <Image src={speechBubbleImage}
-                  alt=""
-                  boxSize="200px"
-                  mx="auto"
-                />
-                <Text
-                  align="center"
-                  position="absolute"
-                  top="30%"
-                  left="30%"
-                >
-                  こんにちは
-                </Text>
-                <Flex align="center" ml={4}>
-                  <Avatar name="jiro" />
-                  <Text ml={2}>
-                    二郎
-                  </Text>
-                </Flex>
-              </Box>
-            </Flex>
           </Container>
           <Flex
+            align="center"
+            justify="center"
+            w="100%"
+            mt={6}
+          >
+            <UserWindow users={users} />
+          </Flex>
+          <Flex
             direction="column"
-            justify="end"
+            justify="center"
+            align="end"
             h="100%"
             p={4}
             pb="32px"
-            flex={0.4}
           >
-            <Text fontWeight="bold">
+            <Text fontWeight="bold" w="50%">
               チャットで使用する名前を入力して、はじめるボタンを押してください
             </Text>
-            <Input placeholder="太郎" my={2} />
-            <Box ml="auto">
-              <PrimaryButton>はじめる</PrimaryButton>
-            </Box>
+            <Input placeholder="太郎" my={2} w="50%" />
+            <PrimaryButton>はじめる</PrimaryButton>
           </Flex>
-        </Flex>
+        </Stack>
       </DefaultLayout>
     </ChakraProvider>
   );
