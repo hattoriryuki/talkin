@@ -1,5 +1,11 @@
 import { FC, memo } from "react";
-import { Avatar, Box, Flex, Image, Text } from "@chakra-ui/react";
+import {
+  Avatar,
+  Box,
+  Flex,
+  Image,
+  Text
+} from "@chakra-ui/react";
 
 import speechBubbleImage from "../../assets/images/speech-bubble.png";
 import { userProfile } from "../../types/userProfile";
@@ -19,16 +25,17 @@ export const UserWindow: FC<Props> = memo((props) => {
           as={Flex}
           direction="column"
           border="1px black solid"
-          mr={6}
-          h={250}
+          mx={4}
+          mb={{ base: "2", md: "0" }}
+          h={{ base: "150", md: "250" }}
+          w={{ base: "40%", md: "210px" }}
           position="relative"
-          justify="space-between"
-          py={4}
-          boxSizing='border-box'
+          py={{ base: "2", md: "4" }}
         >
           <Image src={speechBubbleImage}
             alt=""
-            boxSize="200px"
+            w={{ base: "90%", md: "200px" }}
+            h={{ base: "80%", md: "168px" }}
             mx="auto"
           />
           <Text
@@ -36,11 +43,15 @@ export const UserWindow: FC<Props> = memo((props) => {
             position="absolute"
             top="30%"
             left="30%"
+            fontSize={{ base: "sm", md: "md" }}
           >
             {user.text}
           </Text>
           <Flex align="center" ml={4}>
-            <Avatar name={user.name} />
+            <Avatar
+              name={user.name}
+              size={{ base: "xs", md: "md" }}
+            />
             <Text ml={2}>
               {user.name}
             </Text>

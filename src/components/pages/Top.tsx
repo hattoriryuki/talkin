@@ -30,12 +30,20 @@ export const Top: FC<Props> = memo((props) => {
           as={Flex}
           direction="column"
           justify="space-between"
-          h="100%"
           m={0}
         >
-          <Box my={4} ml={20}>
-            <Heading>とーきんへようこそ!</Heading>
-            <Text w="480px" mt={4} fontSize="lg">
+          <Box
+            my={{ base: "2", md: "4" }}
+            mx={{ base: "0", md: "20" }}
+          >
+            <Heading fontSize={{ base: "xl", md: "4xl" }}>
+              とーきんへようこそ!
+            </Heading>
+            <Text
+              w={{ base: "100%", md: "480px" }}
+              mt={{ base: "2", md: "4" }}
+              fontSize={{ base: "sm", md: "lg" }}
+            >
               このサービスは、気軽に匿名でチャットができるサービスです。
               面倒なユーザー登録等は必要ありません。<br />
               誹謗中傷等、相手を傷つける行為は全て禁止いたします。
@@ -45,8 +53,9 @@ export const Top: FC<Props> = memo((props) => {
         <Flex
           align="center"
           justify="center"
+          wrap="wrap"
           w="100%"
-          mt={6}
+          mt={{ base: "0", md: "6" }}
         >
           <UserWindow users={users} />
         </Flex>
@@ -55,15 +64,25 @@ export const Top: FC<Props> = memo((props) => {
           justify="center"
           align="end"
           h="100%"
-          mt={6}
-          p={4}
-          pb="32px"
+          px={4}
         >
-          <Text fontWeight="bold" w="50%">
-            チャットで使用する名前を入力して、はじめるボタンを押してください
+          <Text fontWeight="bold" w={{ base: "100%", md: "50%" }}>
+            チャットで使用する名前を入力してください
           </Text>
-          <Input placeholder="太郎" my={2} w="50%" />
-          <PrimaryButton>はじめる</PrimaryButton>
+          <Stack 
+            direction={{ base: "row", md: "column" }}
+            align={{ base: "center", md: "end" }}
+            justify="center"
+            w="100%"
+          >
+            <Input
+              placeholder="太郎"
+              my={2}
+              w={{ base: "90%", md: "50%" }}
+              size={{ base: "sm", md: "md" }}
+            />
+            <PrimaryButton>はじめる</PrimaryButton>
+          </Stack>
         </Flex>
       </Stack>
     </>

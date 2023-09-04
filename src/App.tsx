@@ -4,6 +4,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { DefaultLayout } from './components/templates/DefaultLayout';
 import { userProfile } from './types/userProfile';
 import { Top } from './components/pages/Top';
+import theme from './theme/theme';
 
 function App() {
   const users: userProfile[] = [
@@ -17,11 +18,11 @@ function App() {
     },
     {
       name: "三郎",
-      text: ""
+      text: "三郎です!"
     },
     {
       name: "四郎",
-      text: "こんちわ"
+      text: ""
     },
     {
       name: "五郎",
@@ -30,7 +31,7 @@ function App() {
   ];
 
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <DefaultLayout>
         <Top users={users} />
       </DefaultLayout>

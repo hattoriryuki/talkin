@@ -12,6 +12,8 @@ export const PrimaryButton: FC<Props> = memo((props) => {
     <Button
       bg="teal.400"
       color="white"
+      fontSize={{ base: "sm", md: "md" }}
+      size={{ base: "sm", md: "md" }}
       _hover={{ opacity: 0.8 }}
     >
     {children}

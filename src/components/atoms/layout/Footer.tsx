@@ -1,5 +1,10 @@
 import { FC, memo } from "react";
-import { Box, Container, Stack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Container,
+  Stack,
+  Text
+} from "@chakra-ui/react";
 
 export const Footer: FC = memo(() => {
   return (
@@ -16,16 +21,13 @@ export const Footer: FC = memo(() => {
         maxW="6xl"
         py={4}
         direction="row"
-        spacing={4}
         justify="center"
         align="center"
-        gap={20}
+        gap={{ base: "4", md: "20" }}
       >
-        <Stack direction="row" spacing={6}>
-          <Box as="a" href="#">
-            利用規約
-          </Box>
-        </Stack>
+        <Box as="a" href="#">
+          利用規約
+        </Box>
         <Text>©︎ 2023 TALKIN. All rights reserved</Text>
       </Container>
     </Box>

@@ -20,6 +20,7 @@ export const Header: FC<Props> = memo((props) => {
     >
       <Heading
         fontWeight={900}
+        fontSize={{ base: "3xl", md: "4xl" }}
         letterSpacing="-0.07em"
         transform="scale(1, 0.7)"
         ml={6}
