@@ -5,14 +5,13 @@ import {
   Container,
   Flex,
   Heading,
-  Input,
   Stack,
   Text
 } from "@chakra-ui/react";
 
-import { UserWindow } from "../molucules/UserWindow";
-import { PrimaryButton } from "../atoms/button/PrimaryButton";
+import { UserWindow } from "../organisms/UserWindow";
 import { userProfile } from "../../types/userProfile";
+import { PrimaryInput } from "../molucules/PrimaryInput";
 
 type Props = {
   users: userProfile[];
@@ -75,22 +74,12 @@ export const Top: FC<Props> = memo((props) => {
           <Text fontWeight="bold" w={{ base: "100%", md: "50%" }}>
             チャットで使用する名前を入力してください
           </Text>
-          <Stack 
-            direction={{ base: "row", md: "column" }}
-            align={{ base: "center", md: "end" }}
-            justify="center"
-            w="100%"
-          >
-            <Input
-              placeholder="太郎"
-              my={2}
-              w={{ base: "90%", md: "50%" }}
-              size={{ base: "sm", md: "md" }}
+          <Box w={{ base: "100%", md: "50%" }}>
+            <PrimaryInput
+              onClick={onClickChatRoom}
+              buttonLabel="はじめる"
             />
-            <PrimaryButton onClick={onClickChatRoom}>
-              はじめる
-            </PrimaryButton>
-          </Stack>
+          </Box>
         </Flex>
       </Stack>
     </>
