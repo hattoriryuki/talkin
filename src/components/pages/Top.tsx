@@ -70,11 +70,12 @@ export const Top: FC<Props> = memo((props) => {
           align="end"
           h="100%"
           px={4}
+          mr={{ base: "0", md: "10" }}
         >
           <Text fontWeight="bold" w={{ base: "100%", md: "50%" }}>
             チャットで使用する名前を入力してください
           </Text>
-          <Box w={{ base: "100%", md: "50%" }}>
+          <Box w={{ base: "100%", md: "50%" }} >
             <PrimaryInput
               onClick={onClickChatRoom}
               buttonLabel="はじめる"

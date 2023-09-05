@@ -12,8 +12,8 @@ export const PrimaryInput: FC<Props> = memo((props) => {
 
   return (
     <Stack
-      direction={{ base: "row", md: "column" }}
-      align={{ base: "center", md: "end" }}
+      direction="row"
+      align="center"
       justify="center"
       w="100%"
     >
