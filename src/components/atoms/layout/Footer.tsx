@@ -28,7 +28,7 @@ export const Footer: FC = memo(() => {
         <Box as="a" href="#">
           利用規約
         </Box>
-        <Text>©︎ 2023 TALKIN. All rights reserved</Text>
+        <Text>&copy; 2023 TALKIN. All rights reserved</Text>
       </Container>
     </Box>
   );
