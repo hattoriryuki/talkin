@@ -5,6 +5,7 @@ import { Top } from "../components/pages/Top";
 import { ChatRoom } from "../components/pages/ChatRoom";
 import { DefaultLayout } from "../components/templates/DefaultLayout";
 import { userProfile } from "../types/userProfile";
+import { HeaderOnlyLayout } from "../components/templates/HeaderOnlyLayout";
 
 type Props = {
   users: userProfile[];
@@ -26,7 +27,9 @@ export const Router: FC<Props> = memo((props) => {
       <Route
         path="/chatroom"
         element={
-          <ChatRoom />
+          <HeaderOnlyLayout>
+            <ChatRoom />
+          </HeaderOnlyLayout>
         }
       />
     </Routes>

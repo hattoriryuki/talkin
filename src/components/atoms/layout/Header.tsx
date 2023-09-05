@@ -26,8 +26,8 @@ export const Header: FC<Props> = memo((props) => {
         ml={6}
       >
         TALKIN
-        {children}
       </Heading>
+      {children}
     </Flex>
   );
 });
