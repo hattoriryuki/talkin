@@ -1,10 +1,9 @@
-import React from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
+import { BrowserRouter } from 'react-router-dom';
 
-import { DefaultLayout } from './components/templates/DefaultLayout';
 import { userProfile } from './types/userProfile';
-import { Top } from './components/pages/Top';
 import theme from './theme/theme';
+import { Router } from './router/Router';
 
 function App() {
   const users: userProfile[] = [
@@ -32,9 +31,9 @@ function App() {
 
   return (
     <ChakraProvider theme={theme}>
-      <DefaultLayout>
-        <Top users={users} />
-      </DefaultLayout>
+      <BrowserRouter>
+        <Router users={users} />
+      </BrowserRouter>
     </ChakraProvider>
   );
 }

@@ -1,4 +1,5 @@
-import { FC, memo } from "react";
+import { FC, memo, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Box,
   Container,
@@ -19,6 +20,11 @@ type Props = {
 
 export const Top: FC<Props> = memo((props) => {
   const { users } = props;
+  const navigate = useNavigate();
+
+  const onClickChatRoom = useCallback(() =>
+    navigate("/chatroom"),
+  []);
 
   return (
     <>
@@ -81,7 +87,9 @@ export const Top: FC<Props> = memo((props) => {
               w={{ base: "90%", md: "50%" }}
               size={{ base: "sm", md: "md" }}
             />
-            <PrimaryButton>はじめる</PrimaryButton>
+            <PrimaryButton onClick={onClickChatRoom}>
+              はじめる
+            </PrimaryButton>
           </Stack>
         </Flex>
       </Stack>
