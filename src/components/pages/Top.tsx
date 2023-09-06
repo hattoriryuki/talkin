@@ -14,12 +14,11 @@ import {
   Stack,
   Text
 } from "@chakra-ui/react";
-import { addDoc, collection } from "firebase/firestore";
 
 import { UserWindow } from "../organisms/UserWindow";
 import { userProfile } from "../../types/userProfile";
 import { PrimaryInput } from "../molucules/PrimaryInput";
-import { db } from "../../firebase";
+import { useAddUserToDB } from "../../hooks/useAddUserToDB";
 
 type Props = {
   users: userProfile[];
@@ -27,19 +26,14 @@ type Props = {
 
 export const Top: FC<Props> = memo((props) => {
   const { users } = props;
-  const [uuid, setUuid] = useState(crypto.randomUUID());
   const [userName, setUserName] = useState("");
-  
   const navigate = useNavigate();
+  const { addUserToDB } = useAddUserToDB(userName);
   
   const onClickChatRoom = useCallback(() => {
-    setUuid(crypto.randomUUID());
+    addUserToDB();
     navigate("/chatroom");
-    addDoc(collection(db, "users"), {
-      name: userName,
-      uuid
-    });  
-  }, [uuid, userName]);
+  }, [userName]);
 
   const onChangeName = (e: ChangeEvent<HTMLInputElement>) =>
     setUserName(e.target.value);
