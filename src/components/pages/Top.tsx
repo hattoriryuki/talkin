@@ -5,7 +5,6 @@ import {
   useCallback,
   useState
 } from "react";
-import { useNavigate } from "react-router-dom";
 import {
   Box,
   Container,
@@ -27,13 +26,10 @@ type Props = {
 export const Top: FC<Props> = memo((props) => {
   const { users } = props;
   const [userName, setUserName] = useState("");
-  const navigate = useNavigate();
   const { addUserToDB } = useAddUserToDB(userName);
   
-  const onClickChatRoom = useCallback(() => {
-    addUserToDB();
-    navigate("/chatroom");
-  }, [userName]);
+  const onClickChatRoom = useCallback(() => 
+    addUserToDB(), [userName]);
 
   const onChangeName = (e: ChangeEvent<HTMLInputElement>) =>
     setUserName(e.target.value);
