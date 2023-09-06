@@ -1,4 +1,10 @@
-import { FC, memo, useCallback } from "react";
+import {
+  ChangeEvent,
+  FC,
+  memo,
+  useCallback,
+  useState
+} from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Box,
@@ -8,10 +14,12 @@ import {
   Stack,
   Text
 } from "@chakra-ui/react";
+import { addDoc, collection } from "firebase/firestore";
 
 import { UserWindow } from "../organisms/UserWindow";
 import { userProfile } from "../../types/userProfile";
 import { PrimaryInput } from "../molucules/PrimaryInput";
+import { db } from "../../firebase";
 
 type Props = {
   users: userProfile[];
@@ -19,12 +27,23 @@ type Props = {
 
 export const Top: FC<Props> = memo((props) => {
   const { users } = props;
+  const [uuid, setUuid] = useState(crypto.randomUUID());
+  const [userName, setUserName] = useState("");
+  
   const navigate = useNavigate();
+  
+  const onClickChatRoom = useCallback(() => {
+    setUuid(crypto.randomUUID());
+    navigate("/chatroom");
+    addDoc(collection(db, "users"), {
+      name: userName,
+      uuid
+    });  
+  }, [uuid, userName]);
 
-  const onClickChatRoom = useCallback(() =>
-    navigate("/chatroom"),
-  []);
-
+  const onChangeName = (e: ChangeEvent<HTMLInputElement>) =>
+    setUserName(e.target.value);
+  
   return (
     <>
       <Stack
@@ -79,6 +98,8 @@ export const Top: FC<Props> = memo((props) => {
             <PrimaryInput
               onClick={onClickChatRoom}
               buttonLabel="はじめる"
+              onChange={onChangeName}
+              value={userName}
             />
           </Box>
         </Flex>
