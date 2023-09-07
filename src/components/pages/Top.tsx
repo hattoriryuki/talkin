@@ -1,5 +1,10 @@
-import { FC, memo, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import {
+  ChangeEvent,
+  FC,
+  memo,
+  useCallback,
+  useState
+} from "react";
 import {
   Box,
   Container,
@@ -12,6 +17,7 @@ import {
 import { UserWindow } from "../organisms/UserWindow";
 import { userProfile } from "../../types/userProfile";
 import { PrimaryInput } from "../molucules/PrimaryInput";
+import { useAddUserToDB } from "../../hooks/useAddUserToDB";
 
 type Props = {
   users: userProfile[];
@@ -19,11 +25,14 @@ type Props = {
 
 export const Top: FC<Props> = memo((props) => {
   const { users } = props;
-  const navigate = useNavigate();
-
+  const [userName, setUserName] = useState("");
+  const { addUserToDB } = useAddUserToDB(userName);
+  
   const onClickChatRoom = useCallback(() =>
-    navigate("/chatroom"),
-  []);
+    addUserToDB(), [userName]);
+
+  const onChangeName = (e: ChangeEvent<HTMLInputElement>) =>
+    setUserName(e.target.value);
 
   return (
     <>
@@ -79,6 +88,8 @@ export const Top: FC<Props> = memo((props) => {
             <PrimaryInput
               onClick={onClickChatRoom}
               buttonLabel="はじめる"
+              onChange={onChangeName}
+              value={userName}
             />
           </Box>
         </Flex>

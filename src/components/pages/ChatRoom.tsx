@@ -30,6 +30,7 @@ export const ChatRoom: FC = memo(() => {
   ];
 
   const onClickPost = useCallback(() => console.log("post!!"), []);
+  const onChangePost = () => console.log();
 
   return (
     <Box h="calc(100vh - 80px)">
@@ -53,7 +54,9 @@ export const ChatRoom: FC = memo(() => {
       >
         <PrimaryInput
           onClick={onClickPost}
+          onChange={onChangePost}
           buttonLabel="投稿"
+          value=""
         />
       </Flex>
     </Box>
