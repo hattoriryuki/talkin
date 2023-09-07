@@ -1,5 +1,6 @@
 import { ChakraProvider } from '@chakra-ui/react';
 import { BrowserRouter } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
 
 import { userProfile } from './types/userProfile';
 import theme from './theme/theme';
@@ -31,9 +32,11 @@ function App() {
 
   return (
     <ChakraProvider theme={theme}>
-      <BrowserRouter>
-        <Router users={users} />
-      </BrowserRouter>
+      <RecoilRoot>
+        <BrowserRouter>
+          <Router users={users} />
+        </BrowserRouter>
+      </RecoilRoot>
     </ChakraProvider>
   );
 }

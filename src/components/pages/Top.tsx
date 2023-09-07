@@ -28,12 +28,12 @@ export const Top: FC<Props> = memo((props) => {
   const [userName, setUserName] = useState("");
   const { addUserToDB } = useAddUserToDB(userName);
   
-  const onClickChatRoom = useCallback(() => 
+  const onClickChatRoom = useCallback(() =>
     addUserToDB(), [userName]);
 
   const onChangeName = (e: ChangeEvent<HTMLInputElement>) =>
     setUserName(e.target.value);
-  
+
   return (
     <>
       <Stack
