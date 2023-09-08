@@ -1,20 +1,14 @@
 import { ChangeEvent, FC, memo, useCallback, useState } from "react";
 import { Box, Flex, Stack } from "@chakra-ui/react";
-import { useRecoilValue } from "recoil";
-import {
-  addDoc,
-  collection,
-  serverTimestamp
-} from "firebase/firestore";
 
 import { UserWindow } from "../organisms/UserWindow";
 import { PrimaryInput } from "../molucules/PrimaryInput";
 import { userProfile } from "../../types/userProfile";
-import { db } from "../../firebase";
-import { userState } from "../../store/userState";
+import { useAddMsgToDB } from "../../hooks/useAddMsgToDB";
 
 export const ChatRoom: FC = memo(() => {
   const [message, setMessage] = useState("");
+  const { addMsgToDB } = useAddMsgToDB(message);
   const users: userProfile[] = [
     {
       name: "太郎",
@@ -38,13 +32,8 @@ export const ChatRoom: FC = memo(() => {
     }
   ];
 
-  const userInfo = useRecoilValue(userState);
-  const onClickPost = useCallback( async () => {
-    await addDoc(collection(db, "messages"), {
-      message,
-      uuid: userInfo.uuid,
-      createdAt: serverTimestamp()
-    });
+  const onClickPost = useCallback(() => {
+    addMsgToDB();
     setMessage("");
   }, [message]);
 
