@@ -1,11 +1,20 @@
-import { FC, memo, useCallback } from "react";
+import { ChangeEvent, FC, memo, useCallback, useState } from "react";
 import { Box, Flex, Stack } from "@chakra-ui/react";
+import { useRecoilValue } from "recoil";
+import {
+  addDoc,
+  collection,
+  serverTimestamp
+} from "firebase/firestore";
 
 import { UserWindow } from "../organisms/UserWindow";
 import { PrimaryInput } from "../molucules/PrimaryInput";
 import { userProfile } from "../../types/userProfile";
+import { db } from "../../firebase";
+import { userState } from "../../store/userState";
 
 export const ChatRoom: FC = memo(() => {
+  const [message, setMessage] = useState("");
   const users: userProfile[] = [
     {
       name: "太郎",
@@ -29,8 +38,19 @@ export const ChatRoom: FC = memo(() => {
     }
   ];
 
-  const onClickPost = useCallback(() => console.log("post!!"), []);
-  const onChangePost = () => console.log();
+  const userInfo = useRecoilValue(userState);
+  const onClickPost = useCallback( async () => {
+    await addDoc(collection(db, "messages"), {
+      message,
+      uuid: userInfo.uuid,
+      createdAt: serverTimestamp()
+    });
+    setMessage("");
+  }, [message]);
+
+  const onChangePost = 
+    useCallback((e: ChangeEvent<HTMLInputElement>) =>
+    setMessage(e.target.value), []);
 
   return (
     <Box h="calc(100vh - 80px)">
@@ -56,7 +76,7 @@ export const ChatRoom: FC = memo(() => {
           onClick={onClickPost}
           onChange={onChangePost}
           buttonLabel="投稿"
-          value=""
+          value={message}
         />
       </Flex>
     </Box>

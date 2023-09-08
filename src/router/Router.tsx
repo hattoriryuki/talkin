@@ -7,7 +7,7 @@ import { ChatRoom } from "../components/pages/ChatRoom";
 import { DefaultLayout } from "../components/templates/DefaultLayout";
 import { userProfile } from "../types/userProfile";
 import { HeaderOnlyLayout } from "../components/templates/HeaderOnlyLayout";
-import { userState } from "../store/userState";
+import { authState } from "../store/authState";
 
 type Props = {
   users: userProfile[];
@@ -15,7 +15,7 @@ type Props = {
 
 export const Router: FC<Props> = memo((props) => {
   const { users } = props;
-  const userInfo = useRecoilValue(userState);
+  const authInfo = useRecoilValue(authState);
 
   return (
     <Routes>
@@ -27,7 +27,7 @@ export const Router: FC<Props> = memo((props) => {
           </DefaultLayout>
         }
       />
-      {userInfo.isAuth &&
+      {authInfo.isAuth &&
         <Route
           path="/chatroom"
           element={
