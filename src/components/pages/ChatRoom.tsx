@@ -1,39 +1,36 @@
-import { ChangeEvent, FC, memo, useCallback, useState } from "react";
+import {
+  ChangeEvent,
+  FC,
+  memo,
+  useCallback,
+  useEffect,
+  useState
+} from "react";
 import { Box, Flex, Stack } from "@chakra-ui/react";
+import { db } from "../../firebase";
+import { collection, onSnapshot } from "firebase/firestore";
 
 import { UserWindow } from "../organisms/UserWindow";
 import { PrimaryInput } from "../molucules/PrimaryInput";
-import { userProfile } from "../../types/userProfile";
-import { useAddMsgToDB } from "../../hooks/useAddMsgToDB";
+import { useUpdateMsg } from "../../hooks/useUpdateMsg";
 
 export const ChatRoom: FC = memo(() => {
   const [message, setMessage] = useState("");
-  const { addMsgToDB } = useAddMsgToDB(message);
-  const users: userProfile[] = [
-    {
-      name: "太郎",
-      text: "太郎です"
-    },
-    {
-      name: "二郎",
-      text: "二郎です"
-    },
-    {
-      name: "三郎",
-      text: "三郎です"
-    },
-    {
-      name: "四郎",
-      text: "四郎です"
-    },
-    {
-      name: "五郎",
-      text: "五郎です"
-    }
-  ];
+  const [users, setUsers] = useState<Array<any>>([]);
+  const { updateMsg } = useUpdateMsg(message);
 
+  useEffect(() => {
+    const userRef = collection(db, "users");
+
+    onSnapshot(userRef, (QuerySnapshot) => {
+      setUsers(
+        QuerySnapshot.docs.map((doc) => doc.data())
+      );
+    });
+  }, [message]);
+  
   const onClickPost = useCallback(() => {
-    addMsgToDB();
+    updateMsg();
     setMessage("");
   }, [message]);
 

@@ -19,9 +19,9 @@ export const UserWindow: FC<Props> = memo((props) => {
 
   return (
     <>
-      {users.map((user) => (
+      {users.map((user, index) => (
         <Box
-          key={user.name}
+          key={index}
           as={Flex}
           direction="column"
           border="1px black solid"
@@ -45,7 +45,7 @@ export const UserWindow: FC<Props> = memo((props) => {
             left="30%"
             fontSize={{ base: "sm", md: "md" }}
           >
-            {user.text}
+            {user.message}
           </Text>
           <Flex align="center" ml={4}>
             <Avatar

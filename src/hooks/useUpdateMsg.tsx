@@ -15,7 +15,7 @@ export const useUpdateMsg = (message: string) => {
       message,
       createdAt: serverTimestamp()
     });
-  }, [userInfo]);
-  
+  }, [message]);
+
   return { updateMsg };
 };
