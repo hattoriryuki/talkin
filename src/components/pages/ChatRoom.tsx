@@ -7,27 +7,18 @@ import {
   useState
 } from "react";
 import { Box, Flex, Stack } from "@chakra-ui/react";
-import { db } from "../../firebase";
-import { collection, onSnapshot } from "firebase/firestore";
 
 import { UserWindow } from "../organisms/UserWindow";
 import { PrimaryInput } from "../molucules/PrimaryInput";
 import { useUpdateMsg } from "../../hooks/useUpdateMsg";
+import { useGetUsers } from "../../hooks/useGetUsers";
 
 export const ChatRoom: FC = memo(() => {
   const [message, setMessage] = useState("");
-  const [users, setUsers] = useState<Array<any>>([]);
+  const { users, getUsers } = useGetUsers();
   const { updateMsg } = useUpdateMsg(message);
 
-  useEffect(() => {
-    const userRef = collection(db, "users");
-
-    onSnapshot(userRef, (QuerySnapshot) => {
-      setUsers(
-        QuerySnapshot.docs.map((doc) => doc.data())
-      );
-    });
-  }, [message]);
+  useEffect(() => getUsers(), [message]);
   
   const onClickPost = useCallback(() => {
     updateMsg();
