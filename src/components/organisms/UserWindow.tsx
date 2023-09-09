@@ -3,12 +3,15 @@ import {
   Avatar,
   Box,
   Flex,
+  Heading,
   Image,
   Text
 } from "@chakra-ui/react";
+import { useRecoilValue } from "recoil";
 
 import speechBubbleImage from "../../assets/images/speech-bubble.png";
 import { userProfile } from "../../types/userProfile";
+import { userState } from "../../store/userState";
 
 type Props = {
   users: userProfile[];
@@ -16,6 +19,7 @@ type Props = {
 
 export const UserWindow: FC<Props> = memo((props) => {
   const { users } = props;
+  const userInfo = useRecoilValue(userState);
 
   return (
     <>
@@ -30,8 +34,11 @@ export const UserWindow: FC<Props> = memo((props) => {
           h={{ base: "150", md: "250" }}
           w={{ base: "40%", md: "210px" }}
           position="relative"
-          py={{ base: "2", md: "4" }}
+          py={{ base: "1", md: "3" }}
         >
+          {user.uuid === userInfo.uuid &&
+            <Heading fontSize="sm" px={1}>あなた</Heading>
+          }
           <Image src={speechBubbleImage}
             alt=""
             w={{ base: "90%", md: "200px" }}

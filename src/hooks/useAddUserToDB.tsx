@@ -18,7 +18,8 @@ export const useAddUserToDB = (userName: string) => {
       await setDoc(doc(db, "users", userInfo.uuid), {
         name: userName,
         message: "",
-        createdAt: serverTimestamp()
+        createdAt: serverTimestamp(),
+        uuid: userInfo.uuid
       });
       navigate("/chatroom");
     } else {
