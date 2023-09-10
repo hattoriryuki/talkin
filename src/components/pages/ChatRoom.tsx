@@ -48,6 +48,7 @@ export const ChatRoom: FC = memo(() => {
         h="20%"
         mx="auto"
         justify="center"
+        mt={6}
       >
         <PrimaryInput
           onClick={onClickPost}
