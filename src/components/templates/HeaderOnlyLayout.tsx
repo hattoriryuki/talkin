@@ -4,7 +4,8 @@ import { useSetRecoilState } from "recoil";
 
 import { Header } from "../atoms/layout/Header";
 import { PrimaryButton } from "../atoms/button/PrimaryButton";
-import { userState } from "../../store/userState";
+import { authState } from "../../store/authState";
+import { useDeleteUser } from "../../hooks/useDeleteUser";
 
 type Props = {
   children: ReactNode;
@@ -13,9 +14,11 @@ type Props = {
 export const HeaderOnlyLayout: FC<Props> = memo((props) => {
   const { children } = props;
   const navigate = useNavigate();
-  const setUserInfo = useSetRecoilState(userState);
+  const setUserInfo = useSetRecoilState(authState);
+  const { deleteUser } = useDeleteUser();
 
   const onClickTop = useCallback(() => {
+    deleteUser();
     setUserInfo({ isAuth: false });
     navigate("/");
   }, []);

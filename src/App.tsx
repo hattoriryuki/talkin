@@ -10,23 +10,28 @@ function App() {
   const users: userProfile[] = [
     {
       name: "太郎",
-      text: "ヾ(●´ω｀●)"
+      message: "ヾ(●´ω｀●)",
+      uuid: ""
     },
     {
       name: "二郎",
-      text: "こんにちは"
+      message: "こんにちは",
+      uuid: ""
     },
     {
       name: "三郎",
-      text: "三郎です!"
+      message: "三郎です!",
+      uuid: ""
     },
     {
       name: "四郎",
-      text: ""
+      message: "",
+      uuid: ""
     },
     {
       name: "五郎",
-      text: "Hello!!!"
+      message: "Hello!!!",
+      uuid: ""
     },
   ];
 

@@ -1,36 +1,33 @@
-import { FC, memo, useCallback } from "react";
+import {
+  ChangeEvent,
+  FC,
+  memo,
+  useCallback,
+  useEffect,
+  useState
+} from "react";
 import { Box, Flex, Stack } from "@chakra-ui/react";
 
 import { UserWindow } from "../organisms/UserWindow";
 import { PrimaryInput } from "../molucules/PrimaryInput";
-import { userProfile } from "../../types/userProfile";
+import { useUpdateMsg } from "../../hooks/useUpdateMsg";
+import { useGetUsers } from "../../hooks/useGetUsers";
 
 export const ChatRoom: FC = memo(() => {
-  const users: userProfile[] = [
-    {
-      name: "太郎",
-      text: "太郎です"
-    },
-    {
-      name: "二郎",
-      text: "二郎です"
-    },
-    {
-      name: "三郎",
-      text: "三郎です"
-    },
-    {
-      name: "四郎",
-      text: "四郎です"
-    },
-    {
-      name: "五郎",
-      text: "五郎です"
-    }
-  ];
+  const [message, setMessage] = useState("");
+  const { users, getUsers } = useGetUsers();
+  const { updateMsg } = useUpdateMsg(message);
 
-  const onClickPost = useCallback(() => console.log("post!!"), []);
-  const onChangePost = () => console.log();
+  useEffect(() => getUsers(), [message]);
+  
+  const onClickPost = useCallback(() => {
+    updateMsg();
+    setMessage("");
+  }, [message]);
+
+  const onChangePost = 
+    useCallback((e: ChangeEvent<HTMLInputElement>) =>
+    setMessage(e.target.value), []);
 
   return (
     <Box h="calc(100vh - 80px)">
@@ -51,12 +48,13 @@ export const ChatRoom: FC = memo(() => {
         h="20%"
         mx="auto"
         justify="center"
+        mt={6}
       >
         <PrimaryInput
           onClick={onClickPost}
           onChange={onChangePost}
           buttonLabel="投稿"
-          value=""
+          value={message}
         />
       </Flex>
     </Box>

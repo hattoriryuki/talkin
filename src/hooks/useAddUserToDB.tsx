@@ -1,29 +1,31 @@
-import { useCallback, useState } from "react";
-import { addDoc, collection } from "firebase/firestore";
+import { useCallback } from "react";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
 import { db } from "../firebase";
-import { useSetRecoilState } from "recoil";
+import { authState } from "../store/authState";
 import { userState } from "../store/userState";
 
 export const useAddUserToDB = (userName: string) => {
-  const [uuid, setUuid] = useState(crypto.randomUUID());
-  const setUserInfo = useSetRecoilState(userState);
+  const userInfo = useRecoilValue(userState);
+  const setAuthInfo = useSetRecoilState(authState);
   const navigate = useNavigate();
 
-  const addUserToDB = useCallback(() => {
+  const addUserToDB = useCallback(async () => {
     if(userName) {
-      setUserInfo({ isAuth: true });
-      setUuid(crypto.randomUUID());
-      addDoc(collection(db, "users"), {
+      setAuthInfo({ isAuth: true });
+      await setDoc(doc(db, "users", userInfo.uuid), {
         name: userName,
-        uuid
+        message: "",
+        createdAt: serverTimestamp(),
+        uuid: userInfo.uuid
       });
       navigate("/chatroom");
     } else {
       alert("ユーザー名を入力してください");
     }
-  }, [userName, uuid]);
+  }, [userName, userInfo]);
   
   return { addUserToDB };
 };

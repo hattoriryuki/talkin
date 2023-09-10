@@ -3,6 +3,7 @@ import {
   FC,
   memo,
   useCallback,
+  useEffect,
   useState
 } from "react";
 import {
@@ -13,11 +14,14 @@ import {
   Stack,
   Text
 } from "@chakra-ui/react";
+import { useRecoilState } from "recoil";
 
 import { UserWindow } from "../organisms/UserWindow";
 import { userProfile } from "../../types/userProfile";
 import { PrimaryInput } from "../molucules/PrimaryInput";
 import { useAddUserToDB } from "../../hooks/useAddUserToDB";
+import { authState } from "../../store/authState";
+import { useDeleteUser } from "../../hooks/useDeleteUser";
 
 type Props = {
   users: userProfile[];
@@ -26,7 +30,16 @@ type Props = {
 export const Top: FC<Props> = memo((props) => {
   const { users } = props;
   const [userName, setUserName] = useState("");
+  const [authInfo, setAuthInfo] = useRecoilState(authState);
   const { addUserToDB } = useAddUserToDB(userName);
+  const { deleteUser } = useDeleteUser();
+
+  useEffect(() => {
+    if (authInfo.isAuth) {
+      deleteUser();
+      setAuthInfo({ isAuth: false });
+    }
+  }, []);
   
   const onClickChatRoom = useCallback(() =>
     addUserToDB(), [userName]);

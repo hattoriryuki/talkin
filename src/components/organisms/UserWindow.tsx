@@ -3,12 +3,15 @@ import {
   Avatar,
   Box,
   Flex,
+  Heading,
   Image,
   Text
 } from "@chakra-ui/react";
+import { useRecoilValue } from "recoil";
 
 import speechBubbleImage from "../../assets/images/speech-bubble.png";
 import { userProfile } from "../../types/userProfile";
+import { userState } from "../../store/userState";
 
 type Props = {
   users: userProfile[];
@@ -16,12 +19,13 @@ type Props = {
 
 export const UserWindow: FC<Props> = memo((props) => {
   const { users } = props;
+  const userInfo = useRecoilValue(userState);
 
   return (
     <>
-      {users.map((user) => (
+      {users.map((user, index) => (
         <Box
-          key={user.name}
+          key={index}
           as={Flex}
           direction="column"
           border="1px black solid"
@@ -30,8 +34,11 @@ export const UserWindow: FC<Props> = memo((props) => {
           h={{ base: "150", md: "250" }}
           w={{ base: "40%", md: "210px" }}
           position="relative"
-          py={{ base: "2", md: "4" }}
+          py={{ base: "1", md: "3" }}
         >
+          {user.uuid === userInfo.uuid &&
+            <Heading fontSize="sm" px={1}>あなた</Heading>
+          }
           <Image src={speechBubbleImage}
             alt=""
             w={{ base: "90%", md: "200px" }}
@@ -41,11 +48,14 @@ export const UserWindow: FC<Props> = memo((props) => {
           <Text
             align="center"
             position="absolute"
-            top="30%"
-            left="30%"
+            w="210px"
+            h="130px"
+            top="30px"
+            lineHeight="130px"
             fontSize={{ base: "sm", md: "md" }}
+            overflow="scroll"
           >
-            {user.text}
+            {user.message}
           </Text>
           <Flex align="center" ml={4}>
             <Avatar
