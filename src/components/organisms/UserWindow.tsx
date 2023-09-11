@@ -48,10 +48,10 @@ export const UserWindow: FC<Props> = memo((props) => {
           <Text
             align="center"
             position="absolute"
-            w="210px"
-            h="130px"
-            top="30px"
-            lineHeight="130px"
+            w={{base: "100%", md: "210px"}}
+            h={{ base: "100px", md: "130px" }}
+            top={{ base: "0", md: "20px" }}
+            lineHeight={{ base: "100px", md: "130px" }}
             fontSize={{ base: "sm", md: "md" }}
             overflow="scroll"
           >
