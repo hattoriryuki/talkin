@@ -1,5 +1,6 @@
-import { FC, ReactNode, memo } from "react";
+import { FC, ReactNode, memo, useCallback } from "react";
 import { Flex, Heading } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   children?: ReactNode;
@@ -7,6 +8,9 @@ type Props = {
 
 export const Header: FC<Props> = memo((props) => {
   const { children } = props;
+  const navigate = useNavigate();
+
+  const onClickTop = useCallback(() => navigate("/"), []);
 
   return (
     <Flex
@@ -24,6 +28,8 @@ export const Header: FC<Props> = memo((props) => {
         letterSpacing="-0.07em"
         transform="scale(1, 0.7)"
         ml={6}
+        cursor="pointer"
+        onClick={onClickTop}
       >
         TALKIN
       </Heading>
