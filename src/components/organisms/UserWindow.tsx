@@ -45,18 +45,26 @@ export const UserWindow: FC<Props> = memo((props) => {
             h={{ base: "80%", md: "168px" }}
             mx="auto"
           />
-          <Text
-            align="center"
+          <Box
+            as={Flex}
             position="absolute"
             w={{base: "100%", md: "210px"}}
             h={{ base: "100px", md: "130px" }}
             top={{ base: "0", md: "20px" }}
-            lineHeight={{ base: "100px", md: "130px" }}
-            fontSize={{ base: "sm", md: "md" }}
-            overflow="scroll"
+            justify="center"
+            align="center"
           >
-            {user.message}
-          </Text>
+            <Text
+              align="center"
+              fontSize={{ base: "sm", md: "md" }}
+              maxH="50%"
+              maxW="80%"
+              overflow="scroll"
+              mt={user.uuid === userInfo.uuid ? "2" : "0"}
+            >
+              {user.message}
+            </Text>
+          </Box>
           <Flex align="center" ml={4}>
             <Avatar
               name={user.name}
