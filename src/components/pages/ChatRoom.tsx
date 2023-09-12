@@ -12,13 +12,21 @@ import { UserWindow } from "../organisms/UserWindow";
 import { PrimaryInput } from "../molucules/PrimaryInput";
 import { useUpdateMsg } from "../../hooks/useUpdateMsg";
 import { useGetUsers } from "../../hooks/useGetUsers";
+import { useToastMsg } from "../../hooks/useToastMsg";
 
 export const ChatRoom: FC = memo(() => {
   const [message, setMessage] = useState("");
   const { users, getUsers } = useGetUsers();
   const { updateMsg } = useUpdateMsg(message);
+  const { showToastMsg } = useToastMsg();
 
   useEffect(() => getUsers(), [message]);
+  useEffect(() => {
+    showToastMsg({
+      status: "success",
+      title: "マナーを守り、お楽しみください!"
+    });
+  }, []);
   
   const onClickPost = useCallback(() => {
     updateMsg();
