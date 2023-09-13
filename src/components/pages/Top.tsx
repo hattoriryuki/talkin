@@ -44,14 +44,18 @@ export const Top: FC<Props> = memo((props) => {
   const onClickChatRoom = useCallback(() =>
     addUserToDB(), [userName]);
 
-  const onChangeName = (e: ChangeEvent<HTMLInputElement>) =>
-    setUserName(e.target.value);
-
+  const onChangeName = 
+    useCallback((e: ChangeEvent<HTMLInputElement>) =>
+    setUserName(e.target.value), []);
+    
   return (
     <>
       <Stack
         h="calc(100vh - 110px)"
+        boxSizing="border-box"
         color="gray.700"
+        pb={{ base: "0", md: "10" }}
+        overflow="scroll"
       >
         <Container
           as={Flex}
@@ -90,9 +94,9 @@ export const Top: FC<Props> = memo((props) => {
           direction="column"
           justify="center"
           align="end"
-          h="100%"
           px={4}
           mr={{ base: "0", md: "10" }}
+          h="100%"
         >
           <Text fontWeight="bold" w={{ base: "100%", md: "50%" }}>
             チャットで使用する名前を入力してください
