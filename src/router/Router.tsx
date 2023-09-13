@@ -8,6 +8,7 @@ import { DefaultLayout } from "../components/templates/DefaultLayout";
 import { userProfile } from "../types/userProfile";
 import { HeaderOnlyLayout } from "../components/templates/HeaderOnlyLayout";
 import { authState } from "../store/authState";
+import { Page404 } from "../components/pages/Page404";
 
 type Props = {
   users: userProfile[];
@@ -37,6 +38,10 @@ export const Router: FC<Props> = memo((props) => {
           }
         />
       }
+      <Route
+        path="*"
+        element={<Page404 />}
+      />
     </Routes>
   );
 });
