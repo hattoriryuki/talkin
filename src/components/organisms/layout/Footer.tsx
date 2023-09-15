@@ -1,7 +1,7 @@
 import { FC, memo } from "react";
 import { Box, Container, Stack, Text, useDisclosure } from "@chakra-ui/react";
 
-import { TermsModal } from "../../organisms/TermsModal";
+import { TermsModal } from "../TermsModal";
 
 export const Footer: FC = memo(() => {
   const { isOpen, onOpen, onClose } = useDisclosure();
