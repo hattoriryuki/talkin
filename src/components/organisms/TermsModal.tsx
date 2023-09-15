@@ -4,6 +4,7 @@ import {
   BoxProps,
   Button,
   Heading,
+  Link,
   ListItem,
   Modal,
   ModalBody,
@@ -186,7 +187,13 @@ export const TermsModal: FC<Props> = memo((props) => {
             <Box>
               本サービスに関するお問い合わせは、下記TwitterアカウントのDMまでお願いいたします。
               <br />
-              @ryuki_runteq_27
+              <Link
+                href="https://twitter.com/messages/compose?recipient_id=1457235129190223872"
+                target="_blank"
+                color="teal.500"
+              >
+                @ryuki_runteq_27
+              </Link>
             </Box>
             <Box mt={4}>以上</Box>
           </UnorderedList>
