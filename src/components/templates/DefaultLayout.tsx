@@ -1,7 +1,7 @@
 import { FC, ReactNode, memo } from "react";
 
-import { Header } from "../atoms/layout/Header";
-import { Footer } from "../atoms/layout/Footer";
+import { Header } from "../organisms/layout/Header";
+import { Footer } from "../organisms/layout/Footer";
 
 type Props = {
   children: ReactNode;
