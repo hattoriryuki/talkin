@@ -45,7 +45,7 @@ function App() {
             <meta property="og:type" content="article" />
             <meta
               property="og:image"
-              content="https://talkin-app-49247.web.app/public/ogp.png"
+              content="https://talkin-app-49247.web.app/ogp.png"
             />
             <meta
               property="og:url"
