@@ -5,7 +5,6 @@ import { RecoilRoot } from "recoil";
 import { userProfile } from "./types/userProfile";
 import theme from "./theme/theme";
 import { Router } from "./router/Router";
-import { Helmet } from "react-helmet-async";
 
 function App() {
   const users: userProfile[] = [
@@ -40,24 +39,6 @@ function App() {
     <ChakraProvider theme={theme}>
       <RecoilRoot>
         <BrowserRouter>
-          <Helmet>
-            <meta property="og:title" content="TALKIN" />
-            <meta property="og:type" content="article" />
-            <meta
-              property="og:image"
-              content={`${process.env.PUBLIC_URL}/ogp.png`}
-            />
-            <meta
-              property="og:url"
-              content="https://talkin-app-49247.web.app/"
-            />
-            <meta
-              property="og:description"
-              content="匿名で気軽にチャットができるサービスです"
-            />
-            <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:site" content="@ryuki_runteq_27" />
-          </Helmet>
           <Router users={users} />
         </BrowserRouter>
       </RecoilRoot>
