@@ -1,11 +1,11 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter } from "react-router-dom";
 import { RecoilRoot } from "recoil";
-import { Helmet } from "react-helmet";
 
 import { userProfile } from "./types/userProfile";
 import theme from "./theme/theme";
 import { Router } from "./router/Router";
+import { Helmet } from "react-helmet-async";
 
 function App() {
   const users: userProfile[] = [
@@ -45,7 +45,7 @@ function App() {
             <meta property="og:type" content="article" />
             <meta
               property="og:image"
-              content="https://talkin-app-49247.web.app/ogp.png"
+              content={`${process.env.PUBLIC_URL}/ogp.png`}
             />
             <meta
               property="og:url"
