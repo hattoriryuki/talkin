@@ -1,19 +1,5 @@
-import {
-  ChangeEvent,
-  FC,
-  memo,
-  useCallback,
-  useEffect,
-  useState
-} from "react";
-import {
-  Box,
-  Container,
-  Flex,
-  Heading,
-  Stack,
-  Text
-} from "@chakra-ui/react";
+import { ChangeEvent, FC, memo, useCallback, useEffect, useState } from "react";
+import { Box, Container, Flex, Heading, Stack, Text } from "@chakra-ui/react";
 import { useRecoilState } from "recoil";
 
 import { UserWindow } from "../organisms/UserWindow";
@@ -40,33 +26,25 @@ export const Top: FC<Props> = memo((props) => {
       setAuthInfo({ isAuth: false });
     }
   }, []);
-  
-  const onClickChatRoom = useCallback(() =>
-    addUserToDB(), [userName]);
 
-  const onChangeName = 
-    useCallback((e: ChangeEvent<HTMLInputElement>) =>
-    setUserName(e.target.value), []);
-    
+  const onClickChatRoom = useCallback(() => addUserToDB(), [userName]);
+
+  const onChangeName = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => setUserName(e.target.value),
+    []
+  );
+
   return (
     <>
       <Stack
-        h="calc(100vh - 110px)"
+        h="100vh"
         boxSizing="border-box"
         color="gray.700"
         pb={{ base: "0", md: "10" }}
         overflow="scroll"
       >
-        <Container
-          as={Flex}
-          direction="column"
-          justify="space-between"
-          m={0}
-        >
-          <Box
-            my={{ base: "2", md: "4" }}
-            mx={{ base: "0", md: "20" }}
-          >
+        <Container as={Flex} direction="column" justify="space-between" m={0}>
+          <Box my={{ base: "2", md: "4" }} mx={{ base: "0", md: "20" }}>
             <Heading fontSize={{ base: "xl", md: "4xl" }}>
               とーきんへようこそ!
             </Heading>
@@ -76,7 +54,8 @@ export const Top: FC<Props> = memo((props) => {
               fontSize={{ base: "sm", md: "lg" }}
             >
               このサービスは、気軽に匿名でチャットができるサービスです。
-              面倒なユーザー登録等は必要ありません。<br />
+              面倒なユーザー登録等は必要ありません。
+              <br />
               誹謗中傷等、相手を傷つける行為は全て禁止いたします。
             </Text>
           </Box>
@@ -101,7 +80,7 @@ export const Top: FC<Props> = memo((props) => {
           <Text fontWeight="bold" w={{ base: "100%", md: "50%" }}>
             チャットで使用する名前を入力してください
           </Text>
-          <Box w={{ base: "100%", md: "50%" }} >
+          <Box w={{ base: "100%", md: "50%" }} mb={{ base: "10", md: "0" }}>
             <PrimaryInput
               onClick={onClickChatRoom}
               buttonLabel="はじめる"
