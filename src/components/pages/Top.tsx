@@ -82,7 +82,7 @@ export const Top: FC<Props> = memo((props) => {
           </Text>
           <Box w={{ base: "100%", md: "50%" }} mb={{ base: "10", md: "0" }}>
             <PrimaryInput
-              onClick={onClickChatRoom}
+              onClickButton={onClickChatRoom}
               buttonLabel="はじめる"
               onChange={onChangeName}
               value={userName}

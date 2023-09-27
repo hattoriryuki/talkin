@@ -3,14 +3,14 @@ import { ChangeEvent, FC, memo } from "react";
 import { PrimaryButton } from "../atoms/button/PrimaryButton";
 
 type Props = {
-  onClick: () => void;
+  onClickButton: () => void;
   buttonLabel: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   value: string;
 };
 
 export const PrimaryInput: FC<Props> = memo((props) => {
-  const { onClick, onChange, buttonLabel, value } = props;
+  const { onClickButton, onChange, buttonLabel, value } = props;
   const onBlur = () => window.scrollTo({ top: 0 });
 
   return (
@@ -25,7 +25,7 @@ export const PrimaryInput: FC<Props> = memo((props) => {
         value={value}
         onBlur={onBlur}
       />
-      <PrimaryButton onClick={onClick}>{buttonLabel}</PrimaryButton>
+      <PrimaryButton onClickButton={onClickButton}>{buttonLabel}</PrimaryButton>
     </Stack>
   );
 });

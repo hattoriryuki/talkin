@@ -69,7 +69,7 @@ export const ChatRoom: FC = memo(() => {
             mt={{ base: "3", md: "6" }}
           >
             <PrimaryInput
-              onClick={onClickPost}
+              onClickButton={onClickPost}
               onChange={onChangePost}
               buttonLabel="投稿"
               value={message}
