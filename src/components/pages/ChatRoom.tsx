@@ -66,8 +66,7 @@ export const ChatRoom: FC = memo(() => {
             w={{ base: "90%", md: "60%" }}
             h="20%"
             mx="auto"
-            justify="center"
-            mt={6}
+            mt={{ base: "0", md: "6" }}
           >
             <PrimaryInput
               onClick={onClickPost}

@@ -37,7 +37,7 @@ export const Top: FC<Props> = memo((props) => {
   return (
     <>
       <Stack
-        h="100vh"
+        h="calc(100vh - 110px)"
         boxSizing="border-box"
         color="gray.700"
         pb={{ base: "0", md: "10" }}
@@ -65,13 +65,13 @@ export const Top: FC<Props> = memo((props) => {
           justify="center"
           wrap="wrap"
           w="100%"
-          mt={{ base: "0", md: "6" }}
+          my={{ base: "0", md: "2" }}
         >
           <UserWindow users={users} />
         </Flex>
         <Flex
           direction="column"
-          justify="center"
+          justify={{ base: "start", md: "center" }}
           align="end"
           px={4}
           mr={{ base: "0", md: "10" }}
