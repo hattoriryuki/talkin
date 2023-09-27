@@ -56,7 +56,7 @@ export const ChatRoom: FC = memo(() => {
             maxW={{ base: "none", md: "800px" }}
             wrap="wrap"
             mx="auto"
-            mt={5}
+            mt={{ base: "3", md: "5" }}
             h="80%"
           >
             <UserWindow users={users} />
@@ -66,7 +66,7 @@ export const ChatRoom: FC = memo(() => {
             w={{ base: "90%", md: "60%" }}
             h="20%"
             mx="auto"
-            mt={{ base: "0", md: "6" }}
+            mt={{ base: "3", md: "6" }}
           >
             <PrimaryInput
               onClick={onClickPost}

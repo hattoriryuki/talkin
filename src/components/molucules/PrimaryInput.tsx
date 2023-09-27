@@ -11,14 +11,10 @@ type Props = {
 
 export const PrimaryInput: FC<Props> = memo((props) => {
   const { onClick, onChange, buttonLabel, value } = props;
+  const onBlur = () => window.scrollTo({ top: 0 });
 
   return (
-    <Stack
-      direction="row"
-      align="center"
-      justify="center"
-      w="100%"
-    >
+    <Stack direction="row" align="center" justify="center" w="100%">
       <Input
         placeholder="太郎"
         my={2}
@@ -27,10 +23,9 @@ export const PrimaryInput: FC<Props> = memo((props) => {
         fontSize="16px"
         onChange={onChange}
         value={value}
+        onBlur={onBlur}
       />
-      <PrimaryButton onClick={onClick}>
-        {buttonLabel}
-      </PrimaryButton>
+      <PrimaryButton onClick={onClick}>{buttonLabel}</PrimaryButton>
     </Stack>
   );
 });
