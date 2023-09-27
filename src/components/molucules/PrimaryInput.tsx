@@ -24,6 +24,7 @@ export const PrimaryInput: FC<Props> = memo((props) => {
         my={2}
         w={{ base: "90%", md: "100%" }}
         size={{ base: "sm", md: "md" }}
+        fontSize="16px"
         onChange={onChange}
         value={value}
       />
