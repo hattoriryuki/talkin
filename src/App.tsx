@@ -28,11 +28,6 @@ function App() {
       message: "",
       uuid: "",
     },
-    {
-      name: "五郎",
-      message: "Hello!!!",
-      uuid: "",
-    },
   ];
 
   return (

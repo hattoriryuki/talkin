@@ -20,7 +20,7 @@ export const Header: FC<Props> = memo((props) => {
       align="center"
       justify="space-between"
       padding={3}
-      h="60px"
+      h={{ base: "50px", md: "60px" }}
     >
       <Heading
         fontWeight={900}
