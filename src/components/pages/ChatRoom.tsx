@@ -8,6 +8,7 @@ import {
   useState,
 } from "react";
 import { Box, Center, Flex, Spinner, Stack } from "@chakra-ui/react";
+import { isMobile } from "react-device-detect";
 
 import { UserWindow } from "../organisms/UserWindow";
 import { PrimaryInput } from "../molucules/PrimaryInput";
@@ -21,6 +22,11 @@ export const ChatRoom: FC = memo(() => {
   const { users, getUsers, loading } = useGetUsers();
   const { updateMsg } = useUpdateMsg(message);
   const { showToastMsg } = useToastMsg();
+
+  useEffect(
+    () => (isMobile ? window.scrollTo(0, -100) : undefined),
+    [isMobile]
+  );
 
   useEffect(() => getUsers(), [message]);
   useEffect(() => {
@@ -56,7 +62,7 @@ export const ChatRoom: FC = memo(() => {
             maxW={{ base: "none", md: "800px" }}
             wrap="wrap"
             mx="auto"
-            mt={5}
+            mt={{ base: "3", md: "5" }}
             h="80%"
           >
             <UserWindow users={users} />
@@ -66,10 +72,10 @@ export const ChatRoom: FC = memo(() => {
             w={{ base: "90%", md: "60%" }}
             h="20%"
             mx="auto"
-            mt={{ base: "0", md: "6" }}
+            mt={{ base: "3", md: "6" }}
           >
             <PrimaryInput
-              onClick={onClickPost}
+              onClickButton={onClickPost}
               onChange={onChangePost}
               buttonLabel="投稿"
               value={message}

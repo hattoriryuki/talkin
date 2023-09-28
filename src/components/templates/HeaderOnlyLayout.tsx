@@ -29,7 +29,7 @@ export const HeaderOnlyLayout: FC<Props> = memo((props) => {
   return (
     <>
       <Header>
-        <PrimaryButton onClick={onClickTop}>退室する</PrimaryButton>
+        <PrimaryButton onClickButton={onClickTop}>退室する</PrimaryButton>
       </Header>
       {children}
     </>

@@ -40,7 +40,6 @@ export const Top: FC<Props> = memo((props) => {
         h="calc(100vh - 110px)"
         boxSizing="border-box"
         color="gray.700"
-        pb={{ base: "0", md: "10" }}
         overflow="scroll"
       >
         <Container as={Flex} direction="column" justify="space-between" m={0}>
@@ -82,7 +81,7 @@ export const Top: FC<Props> = memo((props) => {
           </Text>
           <Box w={{ base: "100%", md: "50%" }} mb={{ base: "10", md: "0" }}>
             <PrimaryInput
-              onClick={onClickChatRoom}
+              onClickButton={onClickChatRoom}
               buttonLabel="はじめる"
               onChange={onChangeName}
               value={userName}
