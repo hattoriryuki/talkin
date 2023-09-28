@@ -8,6 +8,7 @@ import {
   useState,
 } from "react";
 import { Box, Center, Flex, Spinner, Stack } from "@chakra-ui/react";
+import { isMobile } from "react-device-detect";
 
 import { UserWindow } from "../organisms/UserWindow";
 import { PrimaryInput } from "../molucules/PrimaryInput";
@@ -21,6 +22,11 @@ export const ChatRoom: FC = memo(() => {
   const { users, getUsers, loading } = useGetUsers();
   const { updateMsg } = useUpdateMsg(message);
   const { showToastMsg } = useToastMsg();
+
+  useEffect(
+    () => (isMobile ? window.scrollTo(0, -100) : undefined),
+    [isMobile]
+  );
 
   useEffect(() => getUsers(), [message]);
   useEffect(() => {
