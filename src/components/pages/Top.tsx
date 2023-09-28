@@ -40,7 +40,6 @@ export const Top: FC<Props> = memo((props) => {
         h="calc(100vh - 110px)"
         boxSizing="border-box"
         color="gray.700"
-        pb={{ base: "0", md: "10" }}
         overflow="scroll"
       >
         <Container as={Flex} direction="column" justify="space-between" m={0}>
