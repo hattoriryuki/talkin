@@ -5,17 +5,11 @@ import { useRecoilValue } from "recoil";
 import { Top } from "../components/pages/Top";
 import { ChatRoom } from "../components/pages/ChatRoom";
 import { DefaultLayout } from "../components/templates/DefaultLayout";
-import { userProfile } from "../types/userProfile";
 import { HeaderOnlyLayout } from "../components/templates/HeaderOnlyLayout";
 import { authState } from "../store/authState";
 import { Page404 } from "../components/pages/Page404";
 
-type Props = {
-  users: userProfile[];
-};
-
-export const Router: FC<Props> = memo((props) => {
-  const { users } = props;
+export const Router: FC = memo(() => {
   const authInfo = useRecoilValue(authState);
 
   return (
@@ -24,7 +18,7 @@ export const Router: FC<Props> = memo((props) => {
         path="/"
         element={
           <DefaultLayout>
-            <Top users={users} />
+            <Top />
           </DefaultLayout>
         }
       />

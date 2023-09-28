@@ -1,24 +1,24 @@
 import { ChangeEvent, FC, memo, useCallback, useEffect, useState } from "react";
 import { Box, Container, Flex, Heading, Stack, Text } from "@chakra-ui/react";
 import { useRecoilState } from "recoil";
+import { isMobile } from "react-device-detect";
 
 import { UserWindow } from "../organisms/UserWindow";
-import { userProfile } from "../../types/userProfile";
 import { PrimaryInput } from "../molucules/PrimaryInput";
 import { useAddUserToDB } from "../../hooks/useAddUserToDB";
 import { authState } from "../../store/authState";
 import { useDeleteUser } from "../../hooks/useDeleteUser";
+import { userArray } from "../../store/data/userArray";
 
-type Props = {
-  users: userProfile[];
-};
-
-export const Top: FC<Props> = memo((props) => {
-  const { users } = props;
+export const Top: FC = memo(() => {
   const [userName, setUserName] = useState("");
   const [authInfo, setAuthInfo] = useRecoilState(authState);
   const { addUserToDB } = useAddUserToDB(userName);
   const { deleteUser } = useDeleteUser();
+
+  const users = isMobile
+    ? [...userArray]
+    : [...userArray, { name: "五郎", message: "五郎です", uuid: "" }];
 
   useEffect(() => {
     if (authInfo.isAuth) {
