@@ -1,5 +1,5 @@
-import { useCallback } from "react";
-import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { useCallback, useState } from "react";
+import { collection, doc, serverTimestamp, setDoc, getCountFromServer } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { db } from "../firebase";
@@ -7,17 +7,20 @@ import { db } from "../firebase";
 import { authState } from "../store/authState";
 import { userState } from "../store/userState";
 import { useToastMsg } from "./useToastMsg";
+import { useSelectRoom } from "./useSelectRoom";
 
 export const useAddUserToDB = (userName: string) => {
   const userInfo = useRecoilValue(userState);
   const setAuthInfo = useSetRecoilState(authState);
   const navigate = useNavigate();
   const { showToastMsg } = useToastMsg();
+  const { roomName } = useSelectRoom();
 
-  const addUserToDB = useCallback(async () => {
+  const addUserToDB = async () => {
     if(userName) {
       setAuthInfo({ isAuth: true });
-      await setDoc(doc(db, "users", userInfo.uuid), {
+
+      await setDoc(doc(db, roomName, userInfo.uuid), {
         name: userName,
         message: "",
         createdAt: serverTimestamp(),
@@ -30,7 +33,7 @@ export const useAddUserToDB = (userName: string) => {
         status: "error"
       });
     }
-  }, [userName, userInfo]);
+  };
   
   return { addUserToDB };
 };
