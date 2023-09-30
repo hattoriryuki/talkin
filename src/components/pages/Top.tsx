@@ -9,12 +9,14 @@ import { useAddUserToDB } from "../../hooks/useAddUserToDB";
 import { authState } from "../../store/authState";
 import { useDeleteUser } from "../../hooks/useDeleteUser";
 import { userArray } from "../../store/data/userArray";
+import { useSelectRoom } from "../../hooks/useSelectRoom";
 
 export const Top: FC = memo(() => {
   const [userName, setUserName] = useState("");
   const [authInfo, setAuthInfo] = useRecoilState(authState);
   const { addUserToDB } = useAddUserToDB(userName);
   const { deleteUser } = useDeleteUser();
+  const { selectRoom } = useSelectRoom();
 
   const users = isMobile
     ? [...userArray]
@@ -25,6 +27,7 @@ export const Top: FC = memo(() => {
       deleteUser();
       setAuthInfo({ isAuth: false });
     }
+    selectRoom();
   }, []);
 
   const onClickChatRoom = useCallback(() => addUserToDB(), [userName]);
