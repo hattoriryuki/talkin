@@ -28,8 +28,9 @@ export const ChatRoom: FC = memo(() => {
     [isMobile]
   );
 
-  useEffect(() => getUsers(), [message]);
   useEffect(() => {
+    getUsers();
+
     if (once.current) return;
     once.current = true;
     showToastMsg({
