@@ -11,9 +11,22 @@ export const useSelectRoom = () => {
   const authInfo = useRecoilValue(authState);
 
   const selectRoom = useCallback(async () => {
-    const coll = collection(db, "room1");
-    const snapshot = (await getCountFromServer(coll)).data().count;
-    authInfo.isAuth || setRoomName(snapshot >= 6 ? "room2" : "room1");
+    let lengthArr: number[] = [];
+
+    if (!authInfo.isAuth) {
+      for (let i = 1; i <= 10; i++) {
+        const coll = collection(db, `room${i}`);
+        const snapshot = (await getCountFromServer(coll)).data().count;
+
+        lengthArr = [...lengthArr, snapshot];
+      }
+      lengthArr.some((length, index) => {
+        if (length < 6) {
+          setRoomName(`room${index + 1}`);
+          return true;
+        }
+      });
+    }
   }, []);
 
   return { selectRoom };
