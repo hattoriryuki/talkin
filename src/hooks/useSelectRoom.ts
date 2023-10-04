@@ -9,24 +9,16 @@ import { authState } from "../store/authState";
 export const useSelectRoom = () => {
   const setRoomName = useSetRecoilState(roomState);
   const authInfo = useRecoilValue(authState);
-
   const selectRoom = useCallback(async () => {
-    let lengthArr: number[] = [];
+    let i = 1;
+    while (i) {
+      const coll = collection(db, `room${i}`);
+      const snapshot = (await getCountFromServer(coll)).data().count;
 
-    if (!authInfo.isAuth) {
-      for (let i = 1; i <= 10; i++) {
-        const coll = collection(db, `room${i}`);
-        const snapshot = (await getCountFromServer(coll)).data().count;
-
-        lengthArr = [...lengthArr, snapshot];
-      }
-      lengthArr.some((length, index) => {
-        if (length < 6) {
-          setRoomName(`room${index + 1}`);
-          return true;
-        }
-      });
+      if (snapshot <= 5) break;
+      i++;
     }
+    setRoomName(`room${i}`);
   }, []);
 
   return { selectRoom };
