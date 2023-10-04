@@ -56,24 +56,25 @@ export const ChatRoom: FC = memo(() => {
           <Spinner size="xl" thickness="4px" color="gray.700" />
         </Center>
       ) : (
-        <Box h="calc(100vh - 80px)">
+        <Box h="calc(100vh - 60px)">
           <Stack
             direction="row"
             align="center"
             maxW={{ base: "none", md: "800px" }}
             wrap="wrap"
             mx="auto"
-            mt={{ base: "3", md: "5" }}
-            h="80%"
+            mt={{ base: "3", md: "2" }}
+            h="90%"
           >
             <UserWindow users={users} />
           </Stack>
           <Flex
             direction="column"
+            justify={{ base: "start", md: "center" }}
             w={{ base: "90%", md: "60%" }}
-            h="20%"
+            h="10%"
             mx="auto"
-            mt={{ base: "3", md: "6" }}
+            mt={{ base: "3", md: "0" }}
           >
             <PrimaryInput
               onClickButton={onClickPost}
