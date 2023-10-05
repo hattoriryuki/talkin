@@ -1,24 +1,29 @@
 import { ChangeEvent, FC, memo, useCallback, useEffect, useState } from "react";
 import { Box, Container, Flex, Heading, Stack, Text } from "@chakra-ui/react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { isMobile } from "react-device-detect";
 
 import { UserWindow } from "../organisms/UserWindow";
-import { userProfile } from "../../types/userProfile";
 import { PrimaryInput } from "../molucules/PrimaryInput";
 import { useAddUserToDB } from "../../hooks/useAddUserToDB";
 import { authState } from "../../store/authState";
 import { useDeleteUser } from "../../hooks/useDeleteUser";
+import { userArray } from "../../store/data/userArray";
+import { roomState } from "../../store/roomState";
+import { useSelectRoom } from "../../hooks/useSelectRoom";
 
-type Props = {
-  users: userProfile[];
-};
-
-export const Top: FC<Props> = memo((props) => {
-  const { users } = props;
+export const Top: FC = memo(() => {
   const [userName, setUserName] = useState("");
   const [authInfo, setAuthInfo] = useRecoilState(authState);
+  const roomName = useRecoilValue(roomState);
+
   const { addUserToDB } = useAddUserToDB(userName);
   const { deleteUser } = useDeleteUser();
+  const { selectRoom } = useSelectRoom();
+
+  const users = isMobile
+    ? [...userArray]
+    : [...userArray, { name: "五郎", message: "五郎です", uuid: "" }];
 
   useEffect(() => {
     if (authInfo.isAuth) {
@@ -26,6 +31,10 @@ export const Top: FC<Props> = memo((props) => {
       setAuthInfo({ isAuth: false });
     }
   }, []);
+
+  useEffect(() => {
+    selectRoom();
+  }, [roomName]);
 
   const onClickChatRoom = useCallback(() => addUserToDB(), [userName]);
 
