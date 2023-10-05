@@ -7,14 +7,23 @@ import {
   useRef,
   useState,
 } from "react";
-import { Box, Center, Flex, Spinner, Stack } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  Flex,
+  Spinner,
+  Stack,
+  Tag,
+} from "@chakra-ui/react";
 import { isMobile } from "react-device-detect";
+import { useRecoilValue } from "recoil";
 
 import { UserWindow } from "../organisms/UserWindow";
 import { PrimaryInput } from "../molucules/PrimaryInput";
 import { useUpdateMsg } from "../../hooks/useUpdateMsg";
 import { useGetUsers } from "../../hooks/useGetUsers";
 import { useToastMsg } from "../../hooks/useToastMsg";
+import { roomState } from "../../store/roomState";
 
 export const ChatRoom: FC = memo(() => {
   const once = useRef(false);
@@ -22,6 +31,7 @@ export const ChatRoom: FC = memo(() => {
   const { users, getUsers, loading } = useGetUsers();
   const { updateMsg } = useUpdateMsg(message);
   const { showToastMsg } = useToastMsg();
+  const roomName = useRecoilValue(roomState);
 
   useEffect(
     () => (isMobile ? window.scrollTo(0, -100) : undefined),
@@ -57,6 +67,19 @@ export const ChatRoom: FC = memo(() => {
         </Center>
       ) : (
         <Box h="calc(100vh - 60px)">
+          <Box
+            position={{ base: "static", md: "absolute" }}
+            top="70px"
+            left={{ base: "0", md: "15%" }}
+            fontWeight={800}
+            color="gray.700"
+            ml={{ base: "2", md: "0" }}
+            mt={{ base: "2", md: "0" }}
+          >
+            <Tag fontSize="xl" color="gray.700" p={1}>
+              {roomName}
+            </Tag>
+          </Box>
           <Stack
             direction="row"
             align="center"
@@ -64,7 +87,7 @@ export const ChatRoom: FC = memo(() => {
             wrap="wrap"
             mx="auto"
             mt={{ base: "3", md: "2" }}
-            h="90%"
+            h="80%"
           >
             <UserWindow users={users} />
           </Stack>
@@ -72,7 +95,7 @@ export const ChatRoom: FC = memo(() => {
             direction="column"
             justify={{ base: "start", md: "center" }}
             w={{ base: "90%", md: "60%" }}
-            h="10%"
+            h="20%"
             mx="auto"
             mt={{ base: "3", md: "0" }}
           >
