@@ -1,14 +1,12 @@
 import { useCallback } from "react";
 import { collection, getCountFromServer } from "firebase/firestore";
 import { db } from "../firebase";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 
 import { roomState } from "../store/roomState";
-import { authState } from "../store/authState";
 
 export const useSelectRoom = () => {
   const setRoomName = useSetRecoilState(roomState);
-  const authInfo = useRecoilValue(authState);
   const selectRoom = useCallback(async () => {
     let i = 1;
     while (i) {
