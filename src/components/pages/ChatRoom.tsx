@@ -7,14 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
-import {
-  Box,
-  Center,
-  Flex,
-  Spinner,
-  Stack,
-  Tag,
-} from "@chakra-ui/react";
+import { Box, Center, Flex, Spinner, Stack, Tag } from "@chakra-ui/react";
 import { isMobile } from "react-device-detect";
 import { useRecoilValue } from "recoil";
 
@@ -24,6 +17,7 @@ import { useUpdateMsg } from "../../hooks/useUpdateMsg";
 import { useGetUsers } from "../../hooks/useGetUsers";
 import { useToastMsg } from "../../hooks/useToastMsg";
 import { roomState } from "../../store/roomState";
+import { useDeleteUser } from "../../hooks/useDeleteUser";
 
 export const ChatRoom: FC = memo(() => {
   const once = useRef(false);
@@ -31,14 +25,13 @@ export const ChatRoom: FC = memo(() => {
   const { users, getUsers, loading } = useGetUsers();
   const { updateMsg } = useUpdateMsg(message);
   const { showToastMsg } = useToastMsg();
+  const { deleteUser } = useDeleteUser();
   const roomName = useRecoilValue(roomState);
 
-  useEffect(
-    () => (isMobile ? window.scrollTo(0, -100) : undefined),
-    [isMobile]
-  );
+  useEffect(() => (isMobile ? window.scrollTo(0, -100) : undefined), []);
 
   useEffect(() => {
+    window.addEventListener("beforeunload", () => deleteUser());
     getUsers();
 
     if (once.current) return;
@@ -47,12 +40,16 @@ export const ChatRoom: FC = memo(() => {
       status: "success",
       title: "マナーを守り、お楽しみください!",
     });
+
+    return () => {
+      window.removeEventListener("beforeunload", () => deleteUser());
+    };
   }, []);
 
   const onClickPost = useCallback(() => {
     updateMsg();
     setMessage("");
-  }, [message]);
+  }, [message, updateMsg]);
 
   const onChangePost = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => setMessage(e.target.value),

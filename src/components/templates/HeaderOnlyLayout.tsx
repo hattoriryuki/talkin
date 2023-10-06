@@ -24,7 +24,7 @@ export const HeaderOnlyLayout: FC<Props> = memo((props) => {
     setUserInfo({ isAuth: false });
     navigate("/");
     showToastMsg({ title: "チャットルームを退室しました", status: "info" });
-  }, []);
+  }, [deleteUser, navigate, setUserInfo, showToastMsg]);
 
   return (
     <>
