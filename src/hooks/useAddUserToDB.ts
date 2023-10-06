@@ -20,7 +20,7 @@ export const useAddUserToDB = (userName: string) => {
 
   useEffect(() => {
     selectRoom();
-  }, []);
+  }, [selectRoom]);
 
   const addUserToDB = async () => {
     if (userName) {

@@ -10,7 +10,7 @@ export const Header: FC<Props> = memo((props) => {
   const { children } = props;
   const navigate = useNavigate();
 
-  const onClickTop = useCallback(() => navigate("/"), []);
+  const onClickTop = useCallback(() => navigate("/"), [navigate]);
 
   return (
     <Flex

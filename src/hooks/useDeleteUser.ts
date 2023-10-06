@@ -12,7 +12,7 @@ export const useDeleteUser = () => {
 
   const deleteUser = useCallback(async () => {
     await deleteDoc(doc(db, roomName, userInfo.uuid));
-  }, [userInfo.uuid]);
+  }, [userInfo.uuid, roomName]);
 
   return { deleteUser };
 };

@@ -13,10 +13,7 @@ type Props = {
 
 export const PrimaryInput: FC<Props> = memo((props) => {
   const { onClickButton, onChange, buttonLabel, value } = props;
-  const onBlur = useCallback(
-    () => isMobile && window.scrollTo(0, -100),
-    [isMobile]
-  );
+  const onBlur = useCallback(() => isMobile && window.scrollTo(0, -100), []);
 
   return (
     <Stack direction="row" align="center" justify="center" w="100%">

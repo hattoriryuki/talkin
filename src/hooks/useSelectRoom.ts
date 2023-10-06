@@ -17,7 +17,7 @@ export const useSelectRoom = () => {
       i++;
     }
     setRoomName(`room${i}`);
-  }, []);
+  }, [setRoomName]);
 
   return { selectRoom };
 };

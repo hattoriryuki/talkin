@@ -28,10 +28,7 @@ export const ChatRoom: FC = memo(() => {
   const { deleteUser } = useDeleteUser();
   const roomName = useRecoilValue(roomState);
 
-  useEffect(
-    () => (isMobile ? window.scrollTo(0, -100) : undefined),
-    [isMobile]
-  );
+  useEffect(() => (isMobile ? window.scrollTo(0, -100) : undefined), []);
 
   useEffect(() => {
     window.addEventListener("beforeunload", () => deleteUser());
@@ -52,7 +49,7 @@ export const ChatRoom: FC = memo(() => {
   const onClickPost = useCallback(() => {
     updateMsg();
     setMessage("");
-  }, [message]);
+  }, [message, updateMsg]);
 
   const onChangePost = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => setMessage(e.target.value),

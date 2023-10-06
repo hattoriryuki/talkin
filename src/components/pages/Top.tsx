@@ -30,13 +30,13 @@ export const Top: FC = memo(() => {
       deleteUser();
       setAuthInfo({ isAuth: false });
     }
-  }, []);
+  }, [deleteUser, setAuthInfo]);
 
   useEffect(() => {
     selectRoom();
-  }, [roomName]);
+  }, [roomName, selectRoom]);
 
-  const onClickChatRoom = useCallback(() => addUserToDB(), [userName]);
+  const onClickChatRoom = useCallback(() => addUserToDB(), [addUserToDB]);
 
   const onChangeName = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => setUserName(e.target.value),
