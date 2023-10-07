@@ -47,8 +47,7 @@ export const ChatRoom: FC = memo(() => {
   }, []);
 
   const onClickPost = useCallback(() => {
-    // updateMsg();
-    // setMessage("");
+    updateMsg("");
   }, [message, updateMsg]);
 
   const onChangePost = (e: ChangeEvent<HTMLInputElement>) => {
@@ -106,7 +105,7 @@ export const ChatRoom: FC = memo(() => {
               onClickButton={onClickPost}
               onChange={onChangePost}
               onBlur={onBlur}
-              buttonLabel="投稿"
+              buttonLabel="クリア"
               value={message}
             />
           </Flex>
