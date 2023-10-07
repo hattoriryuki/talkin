@@ -43,6 +43,8 @@ export const Top: FC = memo(() => {
     []
   );
 
+  const onBlur = () => isMobile && window.scrollTo(0, -100);
+
   return (
     <>
       <Stack
@@ -91,8 +93,9 @@ export const Top: FC = memo(() => {
           <Box w={{ base: "100%", md: "50%" }} mb={{ base: "10", md: "0" }}>
             <PrimaryInput
               onClickButton={onClickChatRoom}
-              buttonLabel="はじめる"
               onChange={onChangeName}
+              onBlur={onBlur}
+              buttonLabel="はじめる"
               value={userName}
             />
           </Box>

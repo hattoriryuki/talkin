@@ -57,6 +57,11 @@ export const ChatRoom: FC = memo(() => {
     updateMsg(newMessage);
   };
 
+  const onBlur = () => {
+    isMobile && window.scrollTo(0, -100);
+    setMessage("");
+  };
+
   return (
     <>
       {loading ? (
@@ -100,6 +105,7 @@ export const ChatRoom: FC = memo(() => {
             <PrimaryInput
               onClickButton={onClickPost}
               onChange={onChangePost}
+              onBlur={onBlur}
               buttonLabel="投稿"
               value={message}
             />

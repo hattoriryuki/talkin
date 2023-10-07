@@ -1,19 +1,18 @@
-import { ChangeEvent, FC, memo, useCallback } from "react";
+import { ChangeEvent, FC, memo } from "react";
 import { Input, Stack } from "@chakra-ui/react";
-import { isMobile } from "react-device-detect";
 
 import { PrimaryButton } from "../atoms/button/PrimaryButton";
 
 type Props = {
   onClickButton: () => void;
-  buttonLabel: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onBlur: () => void;
+  buttonLabel: string;
   value: string;
 };
 
 export const PrimaryInput: FC<Props> = memo((props) => {
-  const { onClickButton, onChange, buttonLabel, value } = props;
-  const onBlur = useCallback(() => isMobile && window.scrollTo(0, -100), []);
+  const { onClickButton, onChange, onBlur, buttonLabel, value } = props;
 
   return (
     <Stack direction="row" align="center" justify="center" w="100%">
@@ -24,8 +23,8 @@ export const PrimaryInput: FC<Props> = memo((props) => {
         size={{ base: "sm", md: "md" }}
         fontSize="16px"
         onChange={onChange}
-        value={value}
         onBlur={onBlur}
+        value={value}
       />
       <PrimaryButton onClickButton={onClickButton}>{buttonLabel}</PrimaryButton>
     </Stack>
