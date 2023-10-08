@@ -34,13 +34,20 @@ export const UserWindow: FC<Props> = memo((props) => {
               あなた
             </Heading>
           )}
-          <Image
-            src={speechBubbleImage}
-            alt=""
-            w={{ base: "90%", md: "200px" }}
-            h={{ base: "80%", md: "168px" }}
-            mx="auto"
-          />
+          {user.message ? (
+            <Image
+              src={speechBubbleImage}
+              alt=""
+              w={{ base: "90%", md: "200px" }}
+              h={{ base: "80%", md: "168px" }}
+              mx="auto"
+            />
+          ) : (
+            <Box
+              w={{ base: "90%", md: "200px" }}
+              h={{ base: "80%", md: "168px" }}
+            ></Box>
+          )}
           <Box
             as={Flex}
             position="absolute"

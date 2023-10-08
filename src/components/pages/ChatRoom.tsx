@@ -23,7 +23,7 @@ export const ChatRoom: FC = memo(() => {
   const once = useRef(false);
   const [message, setMessage] = useState("");
   const { users, getUsers, loading } = useGetUsers();
-  const { updateMsg } = useUpdateMsg(message);
+  const { updateMsg } = useUpdateMsg();
   const { showToastMsg } = useToastMsg();
   const { deleteUser } = useDeleteUser();
   const roomName = useRecoilValue(roomState);
@@ -47,14 +47,19 @@ export const ChatRoom: FC = memo(() => {
   }, []);
 
   const onClickPost = useCallback(() => {
-    updateMsg();
-    setMessage("");
+    updateMsg("");
   }, [message, updateMsg]);
 
-  const onChangePost = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => setMessage(e.target.value),
-    []
-  );
+  const onChangePost = (e: ChangeEvent<HTMLInputElement>) => {
+    const newMessage = e.target.value;
+    setMessage(newMessage);
+    updateMsg(newMessage);
+  };
+
+  const onBlur = () => {
+    isMobile && window.scrollTo(0, -100);
+    setMessage("");
+  };
 
   return (
     <>
@@ -99,7 +104,8 @@ export const ChatRoom: FC = memo(() => {
             <PrimaryInput
               onClickButton={onClickPost}
               onChange={onChangePost}
-              buttonLabel="投稿"
+              onBlur={onBlur}
+              buttonLabel="クリア"
               value={message}
             />
           </Flex>
