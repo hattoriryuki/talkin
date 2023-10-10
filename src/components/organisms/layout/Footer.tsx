@@ -1,7 +1,8 @@
 import { FC, memo } from "react";
 import { Box, Container, Stack, Text, useDisclosure } from "@chakra-ui/react";
 
-import { TermsModal } from "../TermsModal";
+import { PrimaryModal } from "../PrimaryModal";
+import { TermsContent } from "../../atoms/TermsContent";
 
 export const Footer: FC = memo(() => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -30,7 +31,9 @@ export const Footer: FC = memo(() => {
           <Text>&copy; 2023 TALKIN. All rights reserved</Text>
         </Container>
       </Box>
-      <TermsModal isOpen={isOpen} onClose={onClose} />
+      <PrimaryModal isOpen={isOpen} onClose={onClose} header="利用規約">
+        <TermsContent />
+      </PrimaryModal>
     </>
   );
 });
