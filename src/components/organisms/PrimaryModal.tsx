@@ -23,6 +23,7 @@ export const PrimaryModal: FC<Props> = memo((props) => {
   return (
     <Modal
       isOpen={isOpen}
+      isCentered
       onClose={onClose}
       motionPreset="slideInBottom"
       scrollBehavior="inside"
@@ -30,7 +31,9 @@ export const PrimaryModal: FC<Props> = memo((props) => {
     >
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader color="#0a2463">{header}</ModalHeader>
+        <ModalHeader color="#0a2463" fontSize="2xl">
+          {header}
+        </ModalHeader>
         <ModalCloseButton />
         <ModalBody>{children}</ModalBody>
         <ModalFooter>
