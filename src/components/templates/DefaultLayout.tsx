@@ -2,6 +2,7 @@ import { FC, ReactNode, memo } from "react";
 
 import { Header } from "../organisms/layout/Header";
 import { Footer } from "../organisms/layout/Footer";
+import { HamburgerMenu } from "../organisms/HamburgerMenu";
 
 type Props = {
   children: ReactNode;
@@ -9,9 +10,12 @@ type Props = {
 
 export const DefaultLayout: FC<Props> = memo((props) => {
   const { children } = props;
+
   return (
     <>
-      <Header />
+      <Header>
+        <HamburgerMenu />
+      </Header>
       {children}
       <Footer />
     </>
