@@ -50,7 +50,11 @@ export const HamburgerMenu = () => {
               <FontAwesomeIcon icon={faXTwitter} />
               <Text ml={3}>X-Twitter</Text>
             </MenuItem>
-            <MenuItem>
+            <MenuItem
+              as="a"
+              href="https://github.com/hattoriryuki"
+              target="_blank"
+            >
               <FontAwesomeIcon icon={faGithub} />
               <Text ml={3}>GitHub</Text>
             </MenuItem>
