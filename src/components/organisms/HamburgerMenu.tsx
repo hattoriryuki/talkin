@@ -1,5 +1,12 @@
 import { HamburgerIcon } from "@chakra-ui/icons";
-import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/menu";
+import {
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuGroup,
+  MenuItem,
+  MenuList,
+} from "@chakra-ui/menu";
 import { useDisclosure } from "@chakra-ui/hooks";
 
 import { PrimaryModal } from "./PrimaryModal";
@@ -26,8 +33,15 @@ export const HamburgerMenu = () => {
           <HamburgerIcon boxSize={8} />
         </MenuButton>
         <MenuList color="gray.800">
-          <MenuItem onClick={onTermsOpen}>利用規約</MenuItem>
-          <MenuItem onClick={onPrivacyOpen}>プライバシー</MenuItem>
+          <MenuGroup title="Rules">
+            <MenuItem onClick={onTermsOpen}>利用規約</MenuItem>
+            <MenuItem onClick={onPrivacyOpen}>プライバシー</MenuItem>
+          </MenuGroup>
+          <MenuDivider />
+          <MenuGroup title="Creator">
+            <MenuItem>X</MenuItem>
+            <MenuItem>GitHub</MenuItem>
+          </MenuGroup>
         </MenuList>
       </Menu>
       <PrimaryModal
