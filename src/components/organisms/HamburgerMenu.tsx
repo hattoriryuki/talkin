@@ -14,7 +14,7 @@ import { faXTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { PrimaryModal } from "./PrimaryModal";
 import { TermsContent } from "../atoms/TermsContent";
 import { PrivacyContent } from "../atoms/PrivacyContent";
-import { Text } from "@chakra-ui/layout";
+import { Center, Flex, Link, Text } from "@chakra-ui/layout";
 
 export const HamburgerMenu = () => {
   const {
@@ -42,7 +42,11 @@ export const HamburgerMenu = () => {
           </MenuGroup>
           <MenuDivider />
           <MenuGroup title="Creator">
-            <MenuItem>
+            <MenuItem
+              as="a"
+              href="http://twitter.com/ryuki_runteq_27"
+              target="_blank"
+            >
               <FontAwesomeIcon icon={faXTwitter} />
               <Text ml={3}>X-Twitter</Text>
             </MenuItem>
