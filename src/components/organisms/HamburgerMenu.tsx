@@ -8,10 +8,13 @@ import {
   MenuList,
 } from "@chakra-ui/menu";
 import { useDisclosure } from "@chakra-ui/hooks";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
 
 import { PrimaryModal } from "./PrimaryModal";
 import { TermsContent } from "../atoms/TermsContent";
 import { PrivacyContent } from "../atoms/PrivacyContent";
+import { Text } from "@chakra-ui/layout";
 
 export const HamburgerMenu = () => {
   const {
@@ -39,8 +42,14 @@ export const HamburgerMenu = () => {
           </MenuGroup>
           <MenuDivider />
           <MenuGroup title="Creator">
-            <MenuItem>X</MenuItem>
-            <MenuItem>GitHub</MenuItem>
+            <MenuItem>
+              <FontAwesomeIcon icon={faXTwitter} />
+              <Text ml={3}>X-Twitter</Text>
+            </MenuItem>
+            <MenuItem>
+              <FontAwesomeIcon icon={faGithub} />
+              <Text ml={3}>GitHub</Text>
+            </MenuItem>
           </MenuGroup>
         </MenuList>
       </Menu>
