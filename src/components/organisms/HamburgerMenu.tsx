@@ -10,11 +10,11 @@ import {
 import { useDisclosure } from "@chakra-ui/hooks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
+import { Text } from "@chakra-ui/layout";
 
 import { PrimaryModal } from "./PrimaryModal";
 import { TermsContent } from "../atoms/TermsContent";
 import { PrivacyContent } from "../atoms/PrivacyContent";
-import { Center, Flex, Link, Text } from "@chakra-ui/layout";
 
 export const HamburgerMenu = () => {
   const {
@@ -28,6 +28,10 @@ export const HamburgerMenu = () => {
     onOpen: onPrivacyOpen,
     onClose: onPrivacyClose,
   } = useDisclosure();
+
+  const shareURL = `http://twitter.com/share?url=https://talkin-app-49247.web.app/
+    &text=みんなでお喋りしよう！
+    &hashtags=TALKIN`;
 
   return (
     <>
@@ -57,6 +61,13 @@ export const HamburgerMenu = () => {
             >
               <FontAwesomeIcon icon={faGithub} />
               <Text ml={3}>GitHub</Text>
+            </MenuItem>
+          </MenuGroup>
+          <MenuDivider />
+          <MenuGroup title="Share">
+            <MenuItem as="a" href={shareURL} target="_blank">
+              <FontAwesomeIcon icon={faXTwitter} />
+              <Text ml={3}>共有する</Text>
             </MenuItem>
           </MenuGroup>
         </MenuList>
