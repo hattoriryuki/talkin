@@ -35,7 +35,7 @@ export const HamburgerMenu = () => {
 
   return (
     <>
-      <Menu>
+      <Menu autoSelect={false}>
         <MenuButton mr={8}>
           <HamburgerIcon boxSize={8} />
         </MenuButton>
