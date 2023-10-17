@@ -1,9 +1,11 @@
+import { FC } from "react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import {
   Menu,
   MenuButton,
   MenuDivider,
   MenuGroup,
+  MenuGroupProps,
   MenuItem,
   MenuList,
 } from "@chakra-ui/menu";
@@ -17,6 +19,9 @@ import { TermsContent } from "../atoms/TermsContent";
 import { PrivacyContent } from "../atoms/PrivacyContent";
 
 export const HamburgerMenu = () => {
+  const PrimaryMenuGroup: FC<MenuGroupProps> = (props) => {
+    return <MenuGroup color="#0a2463" {...props} />;
+  };
   const {
     isOpen: isTermsOpen,
     onOpen: onTermsOpen,
@@ -35,17 +40,17 @@ export const HamburgerMenu = () => {
 
   return (
     <>
-      <Menu>
+      <Menu autoSelect={false}>
         <MenuButton mr={8}>
           <HamburgerIcon boxSize={8} />
         </MenuButton>
-        <MenuList color="gray.800">
-          <MenuGroup title="Rules">
+        <MenuList color="gray.700">
+          <PrimaryMenuGroup title="Rules">
             <MenuItem onClick={onTermsOpen}>利用規約</MenuItem>
             <MenuItem onClick={onPrivacyOpen}>プライバシー</MenuItem>
-          </MenuGroup>
+          </PrimaryMenuGroup>
           <MenuDivider />
-          <MenuGroup title="Creator">
+          <PrimaryMenuGroup title="Creator">
             <MenuItem
               as="a"
               href="http://twitter.com/ryuki_runteq_27"
@@ -62,14 +67,14 @@ export const HamburgerMenu = () => {
               <FontAwesomeIcon icon={faGithub} />
               <Text ml={3}>GitHub</Text>
             </MenuItem>
-          </MenuGroup>
+          </PrimaryMenuGroup>
           <MenuDivider />
-          <MenuGroup title="Share">
+          <PrimaryMenuGroup title="Share">
             <MenuItem as="a" href={shareURL} target="_blank">
               <FontAwesomeIcon icon={faXTwitter} />
               <Text ml={3}>共有する</Text>
             </MenuItem>
-          </MenuGroup>
+          </PrimaryMenuGroup>
         </MenuList>
       </Menu>
       <PrimaryModal
